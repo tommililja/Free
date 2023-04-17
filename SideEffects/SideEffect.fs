@@ -3,11 +3,14 @@ namespace SideEffects.FSharp
 open System
 open NodaTime
 
-type SideEffect<'a> =
+type Impure<'a> =
+    | CreateGuid of (Guid -> 'a SideEffect)
+    | GetTime of (Instant -> 'a SideEffect)
     | Log of String * (Unit -> 'a SideEffect)
-    | HttpRequest of String * (String Async -> 'a SideEffect)
-    | Date of Unit * (Instant -> 'a SideEffect)
-    | Guid of Unit * (Guid -> 'a SideEffect)
+    | Http of Uri * (String Async -> 'a SideEffect)
+
+and SideEffect<'a> =
+    | Free of 'a Impure
     | Pure of 'a
     
 and SideEffectAsync<'a> = 'a Async SideEffect
@@ -15,28 +18,45 @@ and SideEffectAsync<'a> = 'a Async SideEffect
 module SideEffect =
 
     // Monad
+         
+    let private convert mb fn = function
+        | CreateGuid next -> CreateGuid (next >> mb fn)
+        | GetTime next -> GetTime (next >> mb fn)
+        | Log (str, next) -> Log (str, next >> mb fn)
+        | Http (url, next) -> Http (url, next >> mb fn)
+        
+    let rec map fn = function
+        | Free impure -> Free (convert map fn impure)
+        | Pure x -> Pure (fn x)
     
     let rec bind fn = function
-        | Log (str, next) -> Log (str, next >> bind fn)
-        | HttpRequest (url, next) -> HttpRequest (url, next >> bind fn)
-        | Date (_, next) -> Date ((), next >> bind fn)
-        | Guid (_, next) -> Guid ((), next >> bind fn)
+        | Free impure -> Free (convert bind fn impure)
         | Pure x -> fn x
-      
-    let rec map fn = function
-        | Log (str, next) -> Log (str, next >> map fn)
-        | HttpRequest (url, next) -> HttpRequest (url, next >> map fn)
-        | Date (_, next) -> Date ((), next >> map fn)
-        | Guid (_, next) -> Guid ((), next >> map fn)
-        | Pure x -> Pure (fn x)
+    
+    // Handle
+    
+    let rec handle interpreter sideEffect =
         
-    // Helpers    
+        let cont next =
+            next >> handle interpreter
+        
+        let select = function
+            | Log (str, next) -> cont next (interpreter.Log str)
+            | CreateGuid next -> cont next (interpreter.CreateGuid ())
+            | GetTime next -> cont next (interpreter.GetTime ())
+            | Http (url, next) -> cont next (interpreter.Http url)
+        
+        match sideEffect with
+        | Free impure -> select impure
+        | Pure x -> x
+    
+    // Lift    
 
-    let log str = Log (str, Pure)
+    let log str = Free (Log (str, Pure))
     
-    let guid () = Guid ((), Pure)
+    let createGuid () = Free (CreateGuid Pure)
     
-    let date () = Date ((), Pure)
+    let getTime () = Free (GetTime Pure)
     
-    let httpRequest url : SideEffectAsync<_> = HttpRequest (url, Pure)
+    let http url : SideEffectAsync<_> = Free (Http (url, Pure))
     

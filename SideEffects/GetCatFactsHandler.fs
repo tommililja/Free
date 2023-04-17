@@ -1,22 +1,22 @@
 namespace SideEffects.FSharp
 
-open System.Net.Http
+open System
 open Falco
 
 module GetCatFactsHandler =
 
     [<Literal>]
     let FactsUrl = "https://cat-fact.herokuapp.com/facts"
-    
-    let private httpClient = new HttpClient()
-    
-    let handle : HttpHandler =
+
+    let handle interpreter : HttpHandler =
         fun ctx -> task {
 
+        let url = Uri FactsUrl
+        
         let! response =
-            FactsUrl
+            url
             |> CatFacts.getFactsFrom
-            |> SideEffects.handle httpClient
+            |> SideEffect.handle interpreter
             
         return! Response.ofJson response ctx
     }

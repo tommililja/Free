@@ -7,25 +7,27 @@ type CatFact = {
     Text: String
 }
 
+and CatFacts = CatFact list
+
 module CatFacts =
     
-    let private deserialize = JsonConvert.DeserializeObject<CatFact list>
+    let private deserialize = JsonConvert.DeserializeObject<CatFacts>
     
     let getFacts url =
         url
-        |> SideEffect.httpRequest
+        |> SideEffect.http
         |> SideEffectAsync.map deserialize
         
-    let getFactsFrom str = sideEffect {
+    let getFactsFrom url : SideEffectAsync<_> = sideEffect {
         
-        let! guid = SideEffect.guid ()
-        let! date = SideEffect.date ()
+        let! guid = SideEffect.createGuid ()
+        let! time = SideEffect.getTime ()
         
-        do! SideEffect.log $"Generated guid {guid} at {date}."
+        do! SideEffect.log $"Generated guid {guid} at {time}."
         
         let! response =
-            str
-            |> SideEffect.httpRequest
+            url
+            |> SideEffect.http
             |> SideEffectAsync.map deserialize
         
         return response
