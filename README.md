@@ -1,1 +1,1 @@
-Handle side effects and dependencies in F# using Free Monad
+Handle side effects and dependencies in F# using a free monad.
