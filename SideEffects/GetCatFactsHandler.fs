@@ -15,7 +15,7 @@ module GetCatFactsHandler =
         
         let! response =
             url
-            |> CatFacts.getFactsFrom
+            |> CatFacts.getFacts
             |> SideEffect.handle interpreter
             
         return! Response.ofJson response ctx
