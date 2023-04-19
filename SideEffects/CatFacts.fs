@@ -15,10 +15,9 @@ module CatFacts =
 
     let getFacts url : SideEffectAsync<_> = sideEffect {
         
-        let! guid = SideEffect.createGuid ()
         let! time = SideEffect.getTime ()
         
-        do! SideEffect.log $"Generated guid {guid} at {time}."
+        do! SideEffect.log $"Request to {url} at {time}."
         
         let! response =
             url
