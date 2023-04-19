@@ -21,7 +21,7 @@ module CatFacts =
         
         let! response =
             url
-            |> SideEffect.http
+            |> SideEffect.httpRequest
             |> SideEffectAsync.map deserialize
         
         return response

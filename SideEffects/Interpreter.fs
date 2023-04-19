@@ -4,18 +4,18 @@ open System
 open NodaTime
 
 type Interpreter = {
+    Log: String -> Unit
     CreateGuid: Unit -> Guid
     GetTime: Unit -> Instant
-    Log: String -> Unit
-    Http: Uri -> String Async
+    HttpRequest: Uri -> String Async
 }
 
 module Interpreter =
     
-    let create createGuid getTime log http = {
+    let create log createGuid getTime httpRequest = {
         CreateGuid = createGuid
         GetTime = getTime
         Log = log
-        Http = http
+        HttpRequest = httpRequest
     }
     

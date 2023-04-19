@@ -5,12 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Interpreter.fs" />
-        <Compile Include="ImpureInterpreter.fs" />
-        <Compile Include="SideEffect.fs" />
-        <Compile Include="SideEffectBuilder.fs" />
         <Compile Include="Async.fs" />
-        <Compile Include="AsyncSideEffect.fs" />
+        <Compile Include="Interpreter.fs" />
+        <Compile Include="Instruction.fs" />
+        <Compile Include="SideEffect.fs" />
+        <Compile Include="SideEffectAsync.fs" />
+        <Compile Include="SideEffectBuilder.fs" />
         <Compile Include="CatFacts.fs" />
         <Compile Include="GetCatFactsHandler.fs" />
         <Compile Include="Program.fs" />

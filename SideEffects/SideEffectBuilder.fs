@@ -5,7 +5,7 @@ module SideEffectBuilder =
 
     type SideEffectBuilder() =
         
-        member this.Bind(x, fn) = SideEffect.bind fn x
+        member this.Bind(x, f) = SideEffect.bind f x
         
         member this.Return(x) = Pure x
 
