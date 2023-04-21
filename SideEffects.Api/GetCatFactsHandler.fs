@@ -12,7 +12,7 @@ module GetCatFactsHandler =
         
         let! response =
             url
-            |> CatFacts.getFactsAsync
+            |> CatFacts.getAsync
             |> SideEffect.handle interpreter
             
         return! Response.ofJson response ctx

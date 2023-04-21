@@ -19,7 +19,7 @@ let ``getFactsAsync should return cat facts`` () =
     let url = Uri "http://domain.com"
 
     let catFacts =
-        CatFacts.getFactsAsync url
+        CatFacts.getAsync url
         |> SideEffect.map Async.RunSynchronously
         |> SideEffect.handle interpreter
     

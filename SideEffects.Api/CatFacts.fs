@@ -11,7 +11,9 @@ and CatFacts = CatFact list
 
 module CatFacts =
 
-    let getFactsAsync url : SideEffectAsync<_> = sideEffect {
+    let private fromJson = JsonSerializer.deserialize<CatFacts>
+    
+    let getAsync url : SideEffectAsync<_> = sideEffect {
         
         let! time = SideEffect.getTime ()
         
@@ -20,7 +22,7 @@ module CatFacts =
         let! response =
             url
             |> SideEffect.httpRequest
-            |> SideEffectAsync.map JsonSerializer.deserialize<CatFacts>
+            |> SideEffectAsync.map fromJson
         
         return response
     }
