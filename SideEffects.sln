@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SideEffects.Api", "SideEffects.Api\SideEffects.Api.fsproj", "{6AC9D676-75BC-470D-9656-E10011FCF3F9}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SideEffects.Tests", "SideEffects.Tests\SideEffects.Tests.fsproj", "{95C1517F-9176-48CD-872B-85E399D133D6}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SideEffects.Monad", "SideEffects.Monad\SideEffects.Monad.fsproj", "{D9A081B5-63F9-4BD8-AEE6-7BE7997FD13C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AC9D676-75BC-470D-9656-E10011FCF3F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AC9D676-75BC-470D-9656-E10011FCF3F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AC9D676-75BC-470D-9656-E10011FCF3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AC9D676-75BC-470D-9656-E10011FCF3F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C1517F-9176-48CD-872B-85E399D133D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C1517F-9176-48CD-872B-85E399D133D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C1517F-9176-48CD-872B-85E399D133D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C1517F-9176-48CD-872B-85E399D133D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9A081B5-63F9-4BD8-AEE6-7BE7997FD13C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A081B5-63F9-4BD8-AEE6-7BE7997FD13C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A081B5-63F9-4BD8-AEE6-7BE7997FD13C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A081B5-63F9-4BD8-AEE6-7BE7997FD13C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

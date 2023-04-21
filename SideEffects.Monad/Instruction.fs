@@ -1,13 +1,14 @@
-namespace SideEffects.FSharp
+namespace SideEffects.Monad
 
-open System
 open NodaTime
+open System
+open System.Text.Json
 
 type Instruction<'a> =
     | Log of String * (Unit -> 'a)
     | CreateGuid of (Guid -> 'a)
     | GetTime of (Instant -> 'a)
-    | HttpRequest of Uri * (String Async -> 'a)
+    | HttpRequest of Uri * (JsonDocument Async -> 'a)
 
 module Instruction =
     

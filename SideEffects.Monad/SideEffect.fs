@@ -1,4 +1,4 @@
-namespace SideEffects.FSharp
+namespace SideEffects.Monad
 
 type SideEffect<'a> =
     | Free of 'a SideEffect Instruction
@@ -16,9 +16,7 @@ module SideEffect =
     
     let rec handle interpreter = function
         | Free i -> Instruction.peel interpreter i |> handle interpreter
-        | Pure x -> x
-    
-    // Lift    
+        | Pure x -> x   
 
     let log str = Free (Log (str, Pure))
     

@@ -9,3 +9,5 @@ riderModule.iml
 *.user
 
 SideEffects/.idea/
+
+SideEffects.Api/.idea/

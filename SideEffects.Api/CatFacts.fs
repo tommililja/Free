@@ -1,7 +1,7 @@
-namespace SideEffects.FSharp
+namespace SideEffects.Api
 
 open System
-open Newtonsoft.Json
+open SideEffects.Monad
 
 type CatFact = {
     Text: String
@@ -10,10 +10,8 @@ type CatFact = {
 and CatFacts = CatFact list
 
 module CatFacts =
-    
-    let private deserialize = JsonConvert.DeserializeObject<CatFacts>
 
-    let getFacts url : SideEffectAsync<_> = sideEffect {
+    let getFactsAsync url : SideEffectAsync<_> = sideEffect {
         
         let! time = SideEffect.getTime ()
         
@@ -22,7 +20,7 @@ module CatFacts =
         let! response =
             url
             |> SideEffect.httpRequest
-            |> SideEffectAsync.map deserialize
+            |> SideEffectAsync.map JsonSerializer.deserialize<CatFacts>
         
         return response
     }

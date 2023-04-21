@@ -1,4 +1,4 @@
-namespace SideEffects.FSharp
+namespace SideEffects.Monad
 
 module SideEffectAsync =
 

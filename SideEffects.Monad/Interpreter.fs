@@ -1,13 +1,14 @@
-namespace SideEffects.FSharp
+namespace SideEffects.Monad
 
-open System
 open NodaTime
+open System
+open System.Text.Json
 
 type Interpreter = {
     Log: String -> Unit
     CreateGuid: Unit -> Guid
     GetTime: Unit -> Instant
-    HttpRequest: Uri -> String Async
+    HttpRequest: Uri -> JsonDocument Async
 }
 
 module Interpreter =

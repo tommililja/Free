@@ -1,21 +1,18 @@
-namespace SideEffects.FSharp
+namespace SideEffects.Api
 
-open System
 open Falco
+open SideEffects.Monad
 
 module GetCatFactsHandler =
-
-    [<Literal>]
-    let FactsUrl = "https://cat-fact.herokuapp.com/facts"
 
     let handle interpreter : HttpHandler =
         fun ctx -> task {
 
-        let url = Uri FactsUrl
+        let url = AppSettings.catFactsUrl
         
         let! response =
             url
-            |> CatFacts.getFacts
+            |> CatFacts.getFactsAsync
             |> SideEffect.handle interpreter
             
         return! Response.ofJson response ctx
