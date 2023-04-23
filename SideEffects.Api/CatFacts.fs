@@ -19,11 +19,11 @@ module CatFacts =
         
         do! SideEffect.log $"Request to {url} at {time}."
         
-        let! response =
+        let! facts =
             url
             |> SideEffect.httpRequest
             |> SideEffectAsync.map fromJson
         
-        return response
+        return facts
     }
     
