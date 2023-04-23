@@ -12,11 +12,11 @@ type Instruction<'a> =
 
 module Instruction =
     
-    let map f = function
-        | Log (str, next) -> Log (str, next >> f)
-        | CreateGuid next -> CreateGuid (next >> f)
-        | GetTime next -> GetTime (next >> f)
-        | HttpRequest (url, next) -> HttpRequest (url, next >> f)
+    let map fn = function
+        | Log (str, next) -> Log (str, next >> fn)
+        | CreateGuid next -> CreateGuid (next >> fn)
+        | GetTime next -> GetTime (next >> fn)
+        | HttpRequest (url, next) -> HttpRequest (url, next >> fn)
     
     let peel interpreter = function
         | Log (str, next) -> next (interpreter.Log str)

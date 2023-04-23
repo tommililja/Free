@@ -8,11 +8,11 @@ type SideEffectAsync<'a> = 'a Async SideEffect
 
 module SideEffect =
     
-    let rec bind f = function
-        | Free i -> Free (Instruction.map (bind f) i)
-        | Pure x -> f x
+    let rec bind fn = function
+        | Free i -> Free (Instruction.map (bind fn) i)
+        | Pure x -> fn x
     
-    let map f = bind (f >> Pure)
+    let map fn = bind (fn >> Pure)
     
     let rec handle interpreter = function
         | Free i -> Instruction.peel interpreter i |> handle interpreter

@@ -4,7 +4,7 @@ module Async =
     
     let ret x = async.Return x
   
-    let bind f x = async.Bind (x, f)
+    let bind fn x = async.Bind (x, fn)
     
-    let map f = bind (f >> ret)
+    let map fn = bind (fn >> ret)
     
