@@ -1,32 +1,29 @@
 module CatFactsTests
 
-open Expecto
 open SideEffects.Api
 open SideEffects.Monad
 open SideEffects.Tests
-open System
 open System.Text.Json
 open Xunit
+open Expecto
 
 let private interpreter =
-    """[ { "text": "Cat fact" } ]"""
+    TestData.response
     |> JsonDocument.Parse
-    |> TestInterpreter.withResponse
+    |> TestData.Interpreter.withResponse
 
 [<Fact>]
-let ``getFactsAsync should return cat facts`` () =
+let ``getAsync should return cat facts`` () =
     
-    let url = Uri "http://domain.com"
-
-    let catFacts =
-        CatFacts.getAsync url
+    let facts =
+        CatFacts.getAsync TestData.url
         |> SideEffect.map Async.RunSynchronously
         |> SideEffect.handle interpreter
     
-    let first = List.head catFacts
+    let first = List.head facts
     
-    "catFacts.Length = 1"
-    |> Expect.equal catFacts.Length 1
+    "facts.Length = 1"
+    |> Expect.equal facts.Length 1
     
     "first.Text = Cat Facts"
     |> Expect.equal first.Text "Cat fact"

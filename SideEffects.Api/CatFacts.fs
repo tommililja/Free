@@ -13,7 +13,7 @@ module CatFacts =
 
     let private fromJson = JsonSerializer.deserialize<CatFacts>
     
-    let getAsync url : SideEffectAsync<_> = sideEffect {
+    let getAsync url = sideEffect {
         
         let! time = SideEffect.getTime ()
         
