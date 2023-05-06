@@ -4,7 +4,7 @@ open NodaTime
 open System
 open System.Text.Json
 
-type Instruction<'a> =
+type 'a Instruction =
     | Log of String * (Unit -> 'a)
     | CreateGuid of (Guid -> 'a)
     | GetTime of (Instant -> 'a)

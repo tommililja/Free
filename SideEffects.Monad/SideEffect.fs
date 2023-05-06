@@ -1,10 +1,8 @@
 namespace SideEffects.Monad
 
-type SideEffect<'a> =
+type 'a SideEffect =
     | Free of 'a SideEffect Instruction
     | Pure of 'a
-    
-type SideEffectAsync<'a> = 'a Async SideEffect
 
 module SideEffect =
     
