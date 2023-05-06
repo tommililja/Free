@@ -10,10 +10,13 @@ module GetCatFactsHandler =
 
         let url = AppSettings.catFactsUrl
         
-        let! facts =
+        let sideEffect =
             url
             |> CatFacts.getAsync
-            |> SideEffect.handle interpreter
+            
+        let! facts =
+            sideEffect
+            |> SideEffect.handle interpreter 
             
         return! Response.ofJson facts ctx
     }
