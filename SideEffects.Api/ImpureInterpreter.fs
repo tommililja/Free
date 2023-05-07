@@ -11,6 +11,6 @@ module ImpureInterpreter =
         Log = Console.WriteLine
         CreateGuid = Guid.NewGuid
         GetTime = SystemClock.Instance.GetCurrentInstant
-        HttpRequest = HttpClient.getStringAsync httpClient
+        HttpRequest = HttpClient.getJsonAsync httpClient
     }
     

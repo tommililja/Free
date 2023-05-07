@@ -16,7 +16,7 @@ module JsonSerializer =
         
 module HttpClient =
     
-    let getStringAsync (httpClient:HttpClient) (url:Uri) =
+    let getJsonAsync (httpClient:HttpClient) (url:Uri) =
         httpClient.GetStringAsync url
         |> Async.AwaitTask
         |> Async.map JsonDocument.Parse
