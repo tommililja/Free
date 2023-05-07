@@ -10,6 +10,10 @@ type SideEffectBuilder() =
 
     member this.Zero() = SideEffect.ret ()
     
+    member this.Delay(f) = f
+    
+    member this.Run(f) = f ()
+
 [<AutoOpen>]
 module SideEffectBuilder =
 
