@@ -4,12 +4,12 @@ type SideEffectBuilder() =
     
     member this.Bind(x, fn) = SideEffect.bind fn x
     
-    member this.Return(x) = Pure x
+    member this.Return(x) = SideEffect.ret x
     
     member this.ReturnFrom(x) = x
 
-    member this.Zero() = Pure ()
-
+    member this.Zero() = SideEffect.ret ()
+    
 [<AutoOpen>]
 module SideEffectBuilder =
 
