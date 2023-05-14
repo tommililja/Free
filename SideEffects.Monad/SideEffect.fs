@@ -20,9 +20,9 @@ module SideEffect =
 
     let log str = Free (Log (str, ret))
     
-    let createGuid () = Free (CreateGuid ret)
+    let createGuid () = Free (CreateGuid ((), ret))
     
-    let getTime () = Free (GetTime ret)
+    let getTime () = Free (GetTime ((), ret))
     
     let httpRequest url = Free (HttpRequest (url, ret))
     
