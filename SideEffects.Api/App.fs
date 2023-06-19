@@ -17,5 +17,7 @@ module App =
         Routing.get "/health" (Response.ofPlainText "It's alive!")
     ]
     
-    webHost [||] { endpoints routes }
+    webHost [||] {
+        endpoints routes
+    }
     

@@ -2,12 +2,14 @@ namespace SideEffects.Api
 
 open System
 open FSharp.Data
-    
-type private Provider = JsonProvider<"appsettings.json">
+
+open Constants
+
+type private Provider = JsonProvider<AppSettings>
     
 module AppSettings =
   
-    let private appSettings = Provider.Load("appsettings.json")
+    let private appSettings = Provider.Load(AppSettings)
     
     let catFactsUrl = Uri appSettings.CatFactsUrl
     
