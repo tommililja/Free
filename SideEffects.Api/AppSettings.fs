@@ -1,7 +1,7 @@
 namespace SideEffects.Api
 
-open FSharp.Data
 open System
+open FSharp.Data
     
 type private Provider = JsonProvider<"appsettings.json">
     

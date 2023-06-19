@@ -1,9 +1,9 @@
 namespace SideEffects.Api
 
-open NodaTime
-open SideEffects.Monad
 open System
 open System.Net.Http
+open SideEffects.Monad
+open NodaTime
 
 module ImpureInterpreter =
 
@@ -11,6 +11,6 @@ module ImpureInterpreter =
         Log = Console.WriteLine
         CreateGuid = Guid.NewGuid
         GetTime = SystemClock.Instance.GetCurrentInstant
-        HttpRequest = HttpClient.getJsonAsync httpClient
+        GetJson = HttpClient.getJsonAsync httpClient
     }
     

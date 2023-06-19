@@ -9,14 +9,16 @@
         <Compile Include="Async.fs" />
         <Compile Include="Interpreter.fs" />
         <Compile Include="Instruction.fs" />
+        <Compile Include="InstructionAsync.fs" />
         <Compile Include="SideEffect.fs" />
-        <Compile Include="SideEffectAsync.fs" />
         <Compile Include="SideEffectBuilder.fs" />
+        <Compile Include="SideEffectAsync.fs" />
+        <Compile Include="SideEffectAsyncBuilder.fs" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="NodaTime" Version="3.1.9" />
-      <PackageReference Update="FSharp.Core" Version="7.0.200" />
+      <PackageReference Update="FSharp.Core" Version="7.0.300" />
     </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
 namespace SideEffects.Api
 
+open System.Net.Http
 open Falco
 open Falco.HostBuilder
-open System.Net.Http
 
-module Program =
+module App =
 
     let private httpClient = new HttpClient()
     

@@ -7,23 +7,27 @@ type CatFact = {
     Text: String
 }
 
-and CatFacts = CatFact list
+type CatFacts = CatFact list
 
 module CatFacts =
 
+    open SideEffectAsync
+    
     let private fromJson = JsonSerializer.deserialize<CatFacts>
     
-    let getAsync url = sideEffect {
+    let getAsync url = sideEffectAsync {
         
-        let! time = SideEffect.getTime ()
+        let! time = getTime ()
+      
+        do! log $"Request to {url} at {time}."
         
-        do! SideEffect.log $"Request to {url} at {time}."
-        
-        let! facts =
+        let! catFacts =
             url
-            |> SideEffect.httpRequest
+            |> SideEffectAsync.getJson
             |> SideEffectAsync.map fromJson
+
+        do! log $"Retreived {catFacts.Length} cat facts."
         
-        return facts
+        return catFacts
     }
     

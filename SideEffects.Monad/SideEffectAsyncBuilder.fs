@@ -1,8 +1,8 @@
 namespace SideEffects.Monad
 
-open SideEffect
+open SideEffectAsync
 
-type SideEffectBuilder() =
+type SideEffectAsyncBuilder() =
     
     member this.Bind(x, fn) = bind fn x
     
@@ -17,7 +17,7 @@ type SideEffectBuilder() =
     member this.Run(f) = f ()
 
 [<AutoOpen>]
-module SideEffectBuilder =
+module SideEffectAsyncBuilder =
 
-    let sideEffect = SideEffectBuilder()
+    let sideEffectAsync = SideEffectAsyncBuilder()
     

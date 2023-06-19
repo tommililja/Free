@@ -8,15 +8,12 @@ module GetCatFactsHandler =
     let handle interpreter : HttpHandler =
         fun ctx -> task {
 
-        let url = AppSettings.catFactsUrl
-        
-        let sideEffect =
-            url
-            |> CatFacts.getAsync
-            
+        let url = AppSettings.catFactsUrl     
+
         let! facts =
-            sideEffect
-            |> SideEffect.handle interpreter 
+            url
+            |> CatFacts.getAsync 
+            |> SideEffectAsync.handle interpreter 
             
         return! Response.ofJson facts ctx
     }
