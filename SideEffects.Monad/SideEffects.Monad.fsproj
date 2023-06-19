@@ -10,10 +10,10 @@
         <Compile Include="Interpreter.fs" />
         <Compile Include="Instruction.fs" />
         <Compile Include="InstructionAsync.fs" />
-        <Compile Include="SideEffect.fs" />
-        <Compile Include="SideEffectBuilder.fs" />
-        <Compile Include="SideEffectAsync.fs" />
-        <Compile Include="SideEffectAsyncBuilder.fs" />
+        <Compile Include="Effect.fs" />
+        <Compile Include="EffectBuilder.fs" />
+        <Compile Include="EffectAsync.fs" />
+        <Compile Include="EffectAsyncBuilder.fs" />
     </ItemGroup>
 
     <ItemGroup>

@@ -4,7 +4,7 @@ open SideEffects.Monad
 open SideEffects.Tests
 open Xunit
 
-module SideEffectAsyncTests =
+module EffectTests =
 
     open Common
     
@@ -17,15 +17,14 @@ module SideEffectAsyncTests =
                 expectedTime
                 
         let bind guid =
-            Expect.equal guid expectedGuid    
-            SideEffectAsync.getTime unit 
+            Expect.equal guid expectedGuid 
+            Effect.getTime unit 
                 
         let actualTime =
             unit
-            |> SideEffectAsync.createGuid
-            |> SideEffectAsync.bind bind
-            |> SideEffectAsync.handle interpreter
-            |> Async.RunSynchronously
+            |> Effect.createGuid
+            |> Effect.bind bind
+            |> Effect.handle interpreter
             
         Expect.equal actualTime expectedTime
     
@@ -40,10 +39,9 @@ module SideEffectAsyncTests =
         
         let actualString =
             unit
-            |> SideEffectAsync.createGuid
-            |> SideEffectAsync.map string
-            |> SideEffectAsync.handle interpreter
-            |> Async.RunSynchronously
+            |> Effect.createGuid
+            |> Effect.map string
+            |> Effect.handle interpreter
             
         Expect.equal actualString expectedString    
     
@@ -56,9 +54,8 @@ module SideEffectAsyncTests =
         
         let actualGuid =
             unit
-            |> SideEffectAsync.createGuid
-            |> SideEffectAsync.handle interpreter
-            |> Async.RunSynchronously
+            |> Effect.createGuid
+            |> Effect.handle interpreter
         
         Expect.equal actualGuid expectedGuid
         
@@ -71,22 +68,8 @@ module SideEffectAsyncTests =
         
         let actualTime =
             unit
-            |> SideEffectAsync.getTime
-            |> SideEffectAsync.handle interpreter
-            |> Async.RunSynchronously
+            |> Effect.getTime
+            |> Effect.handle interpreter
         
         Expect.equal actualTime expectedTime
-        
-    [<Fact>]
-    let ``handle should interpret getJson correctly`` () =
-        
-        let interpreter = TestInterpreter.def
-        
-        let actualJson =
-            url
-            |> SideEffectAsync.getJson
-            |> SideEffectAsync.handle interpreter
-            |> Async.RunSynchronously
-        
-        Expect.equal actualJson expectedJson
     

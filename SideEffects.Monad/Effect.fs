@@ -1,10 +1,10 @@
 namespace SideEffects.Monad
 
-type 'a SideEffect =
-    | Free of 'a SideEffect Instruction
+type 'a Effect =
+    | Free of 'a Effect Instruction
     | Pure of 'a
 
-module SideEffect =
+module Effect =
     
     let ret = Pure
     

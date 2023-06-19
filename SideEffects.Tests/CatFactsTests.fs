@@ -17,7 +17,7 @@ module CatFactsTests =
         let facts = 
             url
             |> CatFacts.getAsync
-            |> SideEffectAsync.handle interpreter
+            |> EffectAsync.handle interpreter
             |> Async.RunSynchronously
         
         let first = List.head facts

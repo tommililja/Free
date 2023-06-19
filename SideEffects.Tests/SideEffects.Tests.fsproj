@@ -11,8 +11,8 @@
         <Compile Include="Common.fs" />
         <Compile Include="TestInterpreter.fs" />
         <Compile Include="InstructionTests.fs" />
-        <Compile Include="SideEffectTests.fs" />
-        <Compile Include="SideEffectAsyncTests.fs" />
+        <Compile Include="EffectTests.fs" />
+        <Compile Include="EffectAsyncTests.fs" />
         <Compile Include="CatFactsTests.fs" />
         <Compile Include="App.fs" />
     </ItemGroup>
