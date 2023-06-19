@@ -4,19 +4,23 @@ Free monad example in F# to handle side effects and dependencies.
 
 module CatFacts =
 
+  open SideEffectAsync
+  
   let private fromJson = JsonSerializer.deserialize<CatFacts>
-
-  let getAsync url = sideEffect {
-
-      let! time = SideEffect.getTime ()
-
-      do! SideEffect.log $"Request to {url} at {time}."
-
-      let! response =
+  
+  let getAsync url = sideEffectAsync {
+      
+      let! time = getTime ()
+    
+      do! log $"Request to {url} at {time}."
+      
+      let! catFacts =
           url
-          |> SideEffect.httpRequest
+          |> SideEffectAsync.getJson
           |> SideEffectAsync.map fromJson
 
-      return response
+      do! log $"Retreived {catFacts.Length} cat facts."
+      
+      return catFacts
   }
 ```
