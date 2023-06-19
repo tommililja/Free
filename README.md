@@ -21,5 +21,4 @@ module CatFacts =
       
       return facts
   }
-  
 ```
