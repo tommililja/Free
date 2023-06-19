@@ -5,9 +5,9 @@ open System.Text.Json
 open NodaTime
 
 type 'a Instruction =
-    | Log of String * (Unit -> 'a)
-    | CreateGuid of Unit * (Guid -> 'a)
-    | GetTime of Unit * (Instant -> 'a)
+    | Log of string * (unit -> 'a)
+    | CreateGuid of unit * (Guid -> 'a)
+    | GetTime of unit * (Instant -> 'a)
     | GetJson of Uri * (JsonDocument Async -> 'a)
 
 module Instruction =

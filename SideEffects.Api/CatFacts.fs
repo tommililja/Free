@@ -4,7 +4,7 @@ open System
 open SideEffects.Monad
 
 type CatFact = {
-    Text: String
+    Text: string
 }
 
 type CatFacts = CatFact list

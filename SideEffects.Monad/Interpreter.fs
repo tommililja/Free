@@ -5,9 +5,9 @@ open System.Text.Json
 open NodaTime
 
 type Interpreter = {
-    Log: String -> Unit
-    CreateGuid: Unit -> Guid
-    GetTime: Unit -> Instant
+    Log: string -> unit
+    CreateGuid: unit -> Guid
+    GetTime: unit -> Instant
     GetJson: Uri -> JsonDocument Async
 }
 
