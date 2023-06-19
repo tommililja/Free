@@ -1,7 +1,7 @@
 namespace SideEffects.Monad
 
 type 'a EffectAsync =
-    | Free of 'a EffectAsync Async Instruction
+    | Impure of 'a EffectAsync Async Instruction
     | Pure of 'a
 
 module EffectAsync =
@@ -13,28 +13,28 @@ module EffectAsync =
         |> Async.ret
     
     let rec bind fn = function
-        | Free instruction ->
+        | Impure instruction ->
             instruction
             |> InstructionAsync.map (bind fn)
-            |> Free
+            |> Impure
         | Pure x -> fn x
     
     let map fn = bind (fn >> ret)
     
     let rec handle interpreter = function
-        | Free instruction ->
+        | Impure instruction ->
             instruction
             |> Instruction.run interpreter 
             |> Async.bind (handle interpreter)
         | Pure x -> Async.ret x
 
     // Lift
-    
-    let log str = Free (Log (str, retAsync))
 
-    let createGuid () = Free (CreateGuid ((), retAsync))
+    let log str = Impure (Log (str, retAsync))
 
-    let getTime () = Free (GetTime ((), retAsync))
+    let createGuid () = Impure (CreateGuid ((), retAsync))
+
+    let getTime () = Impure (GetTime ((), retAsync))
     
-    let getJson url = Free (GetJson (url, Async.map ret))
+    let getJson url = Impure (GetJson (url, Async.map ret))
     
