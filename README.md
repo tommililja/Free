@@ -1,14 +1,14 @@
-Free monad example in F# to handle side effects and dependencies.
+A free monad example in F# to handle side effects and dependencies.
 
 ```fsharp
 
 module CatFacts =
 
-  open SideEffectAsync
+  open EffectAsync
   
   let private fromJson = JsonSerializer.deserialize<CatFacts>
   
-  let getAsync url = sideEffectAsync {
+  let getAsync url = effectAsync {
       
       let! time = getTime ()
     
@@ -16,8 +16,8 @@ module CatFacts =
       
       let! catFacts =
           url
-          |> SideEffectAsync.getJson
-          |> SideEffectAsync.map fromJson
+          |> EffectAsync.getJson
+          |> EffectAsync.map fromJson
 
       do! log $"Retreived {catFacts.Length} cat facts."
       
