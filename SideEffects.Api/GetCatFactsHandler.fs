@@ -1,12 +1,12 @@
 namespace SideEffects.Api
 
-open Falco
+open System.Threading.Tasks
 open SideEffects.Monad
+open Falco
 
 module GetCatFactsHandler =
 
-    let handle interpreter : HttpHandler =
-        fun ctx -> task {
+    let handle interpreter ctx : Task = task {
 
         let url = AppSettings.catFactsUrl     
 
