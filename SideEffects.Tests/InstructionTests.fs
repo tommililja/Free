@@ -1,6 +1,5 @@
 namespace SideEffects.Tests
 
-open Expecto
 open SideEffects.Monad
 open Xunit
 
