@@ -2,10 +2,18 @@ namespace SideEffects.Api
 
 open SideEffects.Monad
 
+type CatFact = {
+    Text: string
+}
+
+and CatFacts = CatFact list
+
 module CatFacts =
 
     open EffectAsync
 
+    let private fromJson = JsonSerializer.deserialize<CatFacts>
+    
     let getAsync url = effectAsync {
         
         let! time = getTime ()
@@ -15,7 +23,7 @@ module CatFacts =
         let! facts =
             url
             |> EffectAsync.getJson
-            |> EffectAsync.map CatFact.fromJson
+            |> EffectAsync.map fromJson
 
         do! log $"Retreived {facts.Length} cat facts."
         

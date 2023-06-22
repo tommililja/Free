@@ -8,7 +8,6 @@
         <Compile Include="Constants.fs" />
         <Compile Include="AppSettings.fs" />
         <Compile Include="Extensions.fs" />
-        <Compile Include="CatFact.fs" />
         <Compile Include="CatFacts.fs" />
         <Compile Include="GetCatFactsHandler.fs" />
         <Compile Include="ImpureInterpreter.fs" />
