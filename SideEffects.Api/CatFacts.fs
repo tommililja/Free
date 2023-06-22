@@ -25,7 +25,7 @@ module CatFacts =
             |> EffectAsync.getJson
             |> EffectAsync.map fromJson
 
-        do! log $"Retreived {facts.Length} cat facts."
+        do! log $"Retrieved {facts.Length} cat facts."
         
         return facts
     }
