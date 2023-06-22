@@ -26,9 +26,9 @@ module Effect =
 
     // Lift
     
-    let log str = Impure (Log (str, ret))
+    let log str = Log (str, ret) |> Impure
     
-    let createGuid () = Impure (CreateGuid ((), ret))
+    let createGuid () = CreateGuid ((), ret) |> Impure
     
-    let getTime () = Impure (GetTime ((), ret))
+    let getTime () = GetTime ((), ret) |> Impure
     

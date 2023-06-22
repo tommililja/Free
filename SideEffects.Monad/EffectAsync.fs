@@ -30,11 +30,11 @@ module EffectAsync =
 
     // Lift
 
-    let log str = Impure (Log (str, retAsync))
+    let log str = Log (str, retAsync) |> Impure
 
-    let createGuid () = Impure (CreateGuid ((), retAsync))
+    let createGuid guid = CreateGuid (guid, retAsync) |> Impure
 
-    let getTime () = Impure (GetTime ((), retAsync))
+    let getTime () = GetTime ((), retAsync) |> Impure
     
-    let getJson url = Impure (GetJson (url, Async.map ret))
+    let getJson url = GetJson (url, Async.map ret) |> Impure
     
