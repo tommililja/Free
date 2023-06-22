@@ -35,15 +35,15 @@ module InstructionTests =
         Expect.equal actualTime expectedTime
         
     [<Fact>]
-    let ``getJson should be interpreted correctly`` () =
+    let ``getJson should be interpreted correctly`` () = async {
         
         let getJson = GetJson (url, id)
         let interpreter = TestInterpreter.def
         
-        let actualJson =
+        let! actualJson =
             interpreter
             |> run getJson
-            |> Async.RunSynchronously
-        
+
         Expect.equal actualJson expectedJson
+    }
     

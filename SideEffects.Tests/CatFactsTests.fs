@@ -10,18 +10,17 @@ module CatFactsTests =
     open Common
     
     [<Fact>]
-    let ``getAsync should return cat facts`` () =
+    let ``getAsync should return cat facts`` () = async {
          
         let interpreter = TestInterpreter.def
         
-        let facts = 
+        let! facts = 
             url
             |> CatFacts.getAsync
             |> EffectAsync.handle interpreter
-            |> Async.RunSynchronously
         
         let first = List.head facts
         
         Expect.equal facts.Length 1
         Expect.equal first.Text "Cat fact"
-        
+    }
