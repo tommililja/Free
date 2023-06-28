@@ -6,44 +6,48 @@ open Xunit
 module InstructionTests =
     
     open Common
-    
-    let private run instruction interpreter =
-        Instruction.run interpreter instruction
-    
+
     [<Fact>]
     let ``createGuid should be interpreted correctly`` () =
         
-        let createGuid = CreateGuid ((), id)
+        let instruction = CreateGuid ((), id)
 
-        let actualGuid =
+        let interpreter =
             expectedGuid
             |> TestInterpreter.withGuid
-            |> run createGuid
+        
+        let actualGuid =
+            instruction
+            |> Instruction.run interpreter 
 
         Expect.equal actualGuid expectedGuid
         
     [<Fact>]
     let ``getTime should be interpreted correctly`` () =
         
-        let getTime = GetTime ((), id)
+        let instruction = GetTime ((), id)
         
-        let actualTime =
+        let interpreter =
             expectedTime
             |> TestInterpreter.withTime
-            |> run getTime
+        
+        let actualTime =
+            instruction
+            |> Instruction.run interpreter 
 
         Expect.equal actualTime expectedTime
         
     [<Fact>]
     let ``getJson should be interpreted correctly`` () = async {
         
-        let getJson = GetJson (url, id)
+        let instruction = GetJson (url, id)
+        
         let interpreter = TestInterpreter.def
         
         let! actualJson =
-            interpreter
-            |> run getJson
-
+            instruction
+            |> Instruction.run interpreter 
+                
         Expect.equal actualJson expectedJson
     }
     
