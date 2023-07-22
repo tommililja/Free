@@ -1,1 +1,3 @@
-module App = let [<EntryPoint>] main _ = 0
+module App =
+
+    let [<EntryPoint>] main _args = 0

@@ -12,11 +12,10 @@ type Interpreter = {
 }
 
 module Interpreter =
-    
+
     let create log createGuid getTime getJson = {
         CreateGuid = createGuid
         GetTime = getTime
         Log = log
         GetJson = getJson
     }
-    

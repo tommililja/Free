@@ -13,4 +13,3 @@ module ImpureInterpreter =
         GetTime = SystemClock.Instance.GetCurrentInstant
         GetJson = HttpClient.getJsonAsync httpClient
     }
-    
