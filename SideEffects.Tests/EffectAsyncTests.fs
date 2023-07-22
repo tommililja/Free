@@ -80,7 +80,7 @@ module EffectAsyncTests =
     [<Fact>]
     let ``handle should interpret getJson correctly`` () = async {
 
-        let interpreter = TestInterpreter.def
+        let interpreter = TestInterpreter.defaultInterpreter
 
         let! actualJson =
             url

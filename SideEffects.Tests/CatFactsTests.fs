@@ -12,7 +12,7 @@ module CatFactsTests =
     [<Fact>]
     let ``getAsync should return cat facts`` () = async {
 
-        let interpreter = TestInterpreter.def
+        let interpreter = TestInterpreter.defaultInterpreter
 
         let! facts =
             url

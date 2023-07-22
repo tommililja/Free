@@ -16,7 +16,7 @@ module TestInterpreter =
         |> Async.ret
         |> returnWith
 
-    let def = {
+    let defaultInterpreter = {
         Log = Console.WriteLine
         CreateGuid = Guid.NewGuid
         GetTime = SystemClock.Instance.GetCurrentInstant
@@ -24,15 +24,17 @@ module TestInterpreter =
     }
 
     let withGuid guid = {
-        def with CreateGuid = returnWith guid
+        defaultInterpreter with
+            CreateGuid = returnWith guid
     }
 
     let withTime time = {
-        def with GetTime = returnWith time
+        defaultInterpreter with
+            GetTime = returnWith time
     }
 
     let withGuidAndTime guid time = {
-        def with
+        defaultInterpreter with
             CreateGuid = returnWith guid
             GetTime = returnWith time
     }

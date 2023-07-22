@@ -42,7 +42,7 @@ module InstructionTests =
 
         let instruction = GetJson (url, id)
 
-        let interpreter = TestInterpreter.def
+        let interpreter = TestInterpreter.defaultInterpreter
 
         let! actualJson =
             instruction
