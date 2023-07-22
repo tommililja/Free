@@ -6,6 +6,8 @@ open Falco.HostBuilder
 
 module App =
 
+    open Routing
+
     let private httpClient = new HttpClient()
 
     let private interpreter =
@@ -13,8 +15,8 @@ module App =
         |> ImpureInterpreter.create
 
     let routes = [
-        Routing.get "/" (GetCatFactsHandler.handle interpreter)
-        Routing.get "/health" (Response.ofPlainText "It's alive!")
+        get "/" (GetCatFactsHandler.handle interpreter)
+        get "/health" (Response.ofPlainText "It's alive!")
     ]
 
     webHost [||] {
