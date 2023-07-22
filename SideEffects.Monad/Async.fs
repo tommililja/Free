@@ -2,8 +2,13 @@ namespace SideEffects.Monad
 
 module Async =
 
-    let ret = async.Return
+    let ret x = async {
+        return x
+    }
 
-    let bind fn x = async.Bind(x, fn)
+    let bind fn x = async {
+        let! a = x
+        return! fn a
+    }
 
     let map fn = bind (fn >> ret)
