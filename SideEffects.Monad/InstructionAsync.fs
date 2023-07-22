@@ -2,4 +2,4 @@ namespace SideEffects.Monad
 
 module InstructionAsync =
 
-    let map fn = Instruction.map (Async.map fn)
+    let map fn = Async.map fn |> Instruction.map
