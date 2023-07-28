@@ -11,7 +11,8 @@ and CatFacts = CatFact list
 module CatFacts =
 
     open EffectAsync
-    open JsonSerializer
+
+    let private fromJson = JsonSerializer.deserialize<CatFacts>
 
     let getAsync url = effectAsync {
 
@@ -21,8 +22,8 @@ module CatFacts =
 
         let! facts =
             url
-            |> EffectAsync.getJson
-            |> EffectAsync.map deserialize<CatFacts>
+            |> getJson
+            |> map fromJson
 
         do! log $"Retrieved {facts.Length} cat facts."
 
