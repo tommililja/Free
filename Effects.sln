@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SideEffects.Api", "SideEffects.Api\SideEffects.Api.fsproj", "{6AC9D676-75BC-470D-9656-E10011FCF3F9}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Effects.Api", "Effects.Api\Effects.Api.fsproj", "{6AC9D676-75BC-470D-9656-E10011FCF3F9}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SideEffects.Tests", "SideEffects.Tests\SideEffects.Tests.fsproj", "{95C1517F-9176-48CD-872B-85E399D133D6}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Effects.Tests", "Effects.Tests\Effects.Tests.fsproj", "{95C1517F-9176-48CD-872B-85E399D133D6}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SideEffects.Monad", "SideEffects.Monad\SideEffects.Monad.fsproj", "{D9A081B5-63F9-4BD8-AEE6-7BE7997FD13C}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Effects.Monad", "Effects.Monad\Effects.Monad.fsproj", "{D9A081B5-63F9-4BD8-AEE6-7BE7997FD13C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
-namespace SideEffects.Tests
+namespace Effects.Tests
 
-open SideEffects.Monad
-open SideEffects.Tests
+open Effects.Monad
+open Effects.Tests
 open Xunit
 
 module EffectTests =

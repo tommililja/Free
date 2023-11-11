@@ -1,4 +1,4 @@
-namespace SideEffects.Tests
+namespace Effects.Tests
 
 open System
 open System.Text.Json

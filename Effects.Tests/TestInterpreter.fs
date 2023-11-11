@@ -1,8 +1,8 @@
-namespace SideEffects.Tests
+namespace Effects.Tests
 
 open System
 open System.Text.Json
-open SideEffects.Monad
+open Effects.Monad
 open NodaTime
 
 module TestInterpreter =

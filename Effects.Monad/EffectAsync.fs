@@ -1,4 +1,4 @@
-namespace SideEffects.Monad
+namespace Effects.Monad
 
 type 'a EffectAsync =
     | Impure of 'a EffectAsync Async Instruction

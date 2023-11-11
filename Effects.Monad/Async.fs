@@ -1,4 +1,4 @@
-namespace SideEffects.Monad
+namespace Effects.Monad
 
 module Async =
 

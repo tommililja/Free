@@ -1,8 +1,8 @@
-namespace SideEffects.Tests
+namespace Effects.Tests
 
-open SideEffects.Api
-open SideEffects.Monad
-open SideEffects.Tests
+open Effects.Api
+open Effects.Monad
+open Effects.Tests
 open Xunit
 
 module CatFactsTests =

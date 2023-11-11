@@ -33,7 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SideEffects.Api\SideEffects.Api.fsproj" />
+      <ProjectReference Include="..\Effects.Api\Effects.Api.fsproj" />
     </ItemGroup>
 
 </Project>

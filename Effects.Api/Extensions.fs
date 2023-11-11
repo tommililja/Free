@@ -1,9 +1,9 @@
-namespace SideEffects.Api
+namespace Effects.Api
 
 open System
 open System.Net.Http
 open System.Text.Json
-open SideEffects.Monad
+open Effects.Monad
 
 module JsonSerializer =
 

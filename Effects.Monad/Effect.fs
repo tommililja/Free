@@ -1,4 +1,4 @@
-namespace SideEffects.Monad
+namespace Effects.Monad
 
 type 'a Effect =
     | Impure of 'a Effect Instruction

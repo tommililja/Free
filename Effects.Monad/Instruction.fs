@@ -1,4 +1,4 @@
-namespace SideEffects.Monad
+namespace Effects.Monad
 
 open System
 open System.Text.Json

@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SideEffects.Monad\SideEffects.Monad.fsproj" />
+      <ProjectReference Include="..\Effects.Monad\Effects.Monad.fsproj" />
     </ItemGroup>
 
 </Project>

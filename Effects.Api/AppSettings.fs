@@ -1,4 +1,4 @@
-namespace SideEffects.Api
+namespace Effects.Api
 
 open System
 open FSharp.Data

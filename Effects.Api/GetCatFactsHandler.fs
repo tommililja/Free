@@ -1,7 +1,7 @@
-namespace SideEffects.Api
+namespace Effects.Api
 
 open System.Threading.Tasks
-open SideEffects.Monad
+open Effects.Monad
 open Falco
 
 module GetCatFactsHandler =
