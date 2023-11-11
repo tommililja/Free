@@ -3,22 +3,20 @@ A free monad example in F#
 ```fsharp
 module CatFacts =
 
-    open EffectAsync
-
     let private fromJson = JsonSerializer.deserialize<CatFacts>
 
     let getAsync url = effectAsync {
 
-        let! time = getTime ()
+        let! time = EffectAsync.getTime ()
 
-        do! log $"Request to {url} at {time}."
+        do! EffectAsync.log $"Request to {url} at {time}."
 
         let! facts =
             url
-            |> getJson
-            |> map fromJson
+            |> EffectAsync.getJson
+            |> EffectAsync.map fromJson
 
-        do! log $"Retrieved {facts.Length} cat facts."
+        do! EffectAsync.log $"Retrieved {facts.Length} cat facts."
 
         return facts
     }
