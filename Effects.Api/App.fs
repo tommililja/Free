@@ -1,24 +1,20 @@
 namespace Effects.Api
 
-open System.Net.Http
-open Falco
-open Falco.HostBuilder
+open Oxpecker
+open Microsoft.AspNetCore.Builder
+open Microsoft.Extensions.Hosting
 
 module App =
 
-    open Routing
+    let (!) = ignore
 
-    let private httpClient = new HttpClient()
+    let app =
+        WebApplication
+            .CreateBuilder()
+            .Build()
 
-    let private interpreter =
-        httpClient
-        |> ImpureInterpreter.create
+    !app
+        .UseRouting()
+        .UseOxpecker(Routes.list)
 
-    let routes = [
-        get "/" (GetCatFactsHandler.handle interpreter)
-        get "/health" (Response.ofPlainText "It's alive!")
-    ]
-
-    webHost [||] {
-        endpoints routes
-    }
+    app.Run()

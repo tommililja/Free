@@ -1,17 +1,33 @@
 namespace Effects.Monad
 
-type 'a Effect =
-    | Impure of 'a Effect Instruction
+type Effect<'a, 'e> =
+    | Impure of Instruction<AsyncResult<Effect<'a, 'e>, 'e>>
     | Pure of 'a
 
 module Effect =
 
     let ret = Pure
 
+    let retAsyncEffect (x:Async<_>) =
+        Async.map Ok x
+        |> AsyncResult
+        |> Instruction.ret
+        |> Impure
+
+    let retResultEffect x =
+        Async.ret x
+        |> AsyncResult
+        |> Instruction.ret
+        |> Impure
+
+    let retAsyncResult x =
+        Instruction.ret x
+        |> Impure
+
     let rec bind fn = function
-        | Impure instruction ->
-            instruction
-            |> Instruction.map (bind fn)
+        | Impure effect ->
+            effect
+            |> Instruction.map (AsyncResult.map (bind fn))
             |> Impure
         | Pure x -> fn x
 
@@ -21,13 +37,17 @@ module Effect =
         | Impure instruction ->
             instruction
             |> Instruction.run interpreter
-            |> handle interpreter
-        | Pure x -> x
+            |> AsyncResult.bind (handle interpreter)
+        | Pure x -> AsyncResult.ret x
 
     // Lift
 
-    let log str = Log (str, ret) |> Impure
+    let private impureRet x = ret x |> AsyncResult.ret
 
-    let createGuid () = CreateGuid ((), ret) |> Impure
+    let log str = Impure <| Log (str, impureRet)
 
-    let getTime () = GetTime ((), ret) |> Impure
+    let createGuid () = Impure <| CreateGuid impureRet
+
+    let getTime () = Impure <| GetTime impureRet
+
+    let random max = Impure <| Random (max, impureRet)
